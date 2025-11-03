@@ -1,0 +1,11 @@
+[project]
+name = "houseuk-crawler"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "scrapeops-scrapy>=0.5.6",
+    "scrapy>=2.13.3",
+    "scrapyd>=1.6.0",
+]

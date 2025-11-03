@@ -6,6 +6,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SCRAPYD_HOST: ${{ secrets.SCRAPYD_HOST }}
+      SCRAPYD_USERNAME: ${{ secrets.SCRAPYD_USERNAME }}
+      SCRAPYD_PASSWORD: ${{ secrets.SCRAPYD_PASSWORD }}
+      SCRAPEOPS_API_KEY: ${{ secrets.SCRAPEOPS_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -24,5 +30,5 @@ jobs:
           echo "machine ${{ secrets.SCRAPYD_HOST }} login ${{ secrets.SCRAPYD_USERNAME }} password ${{ secrets.SCRAPYD_PASSWORD }}" >> ~/.netrc
       - name: Deploy to Scrapyd
         run: |
-          cd src/your_project
+          cd src/rightmove
           scrapyd-deploy production
