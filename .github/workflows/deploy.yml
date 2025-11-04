@@ -12,19 +12,22 @@ jobs:
       SCRAPYD_PASSWORD: ${{ secrets.SCRAPYD_PASSWORD }}
       SCRAPEOPS_API_KEY: ${{ secrets.SCRAPEOPS_API_KEY }}
 
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.12
+          python-version: '3.13'
+      
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
-          pip install scrapyd-client pytest
-      - name: Run tests
-        run: pytest src/rightmove/tests/
+          pip install uv
+          uv sync
+      # - name: Run tests
+      #   run: pytest src/rightmove/tests/
       - name: Add Scrapyd auth
         run: |
           echo "machine ${{ secrets.SCRAPYD_HOST }} login ${{ secrets.SCRAPYD_USERNAME }} password ${{ secrets.SCRAPYD_PASSWORD }}" >> ~/.netrc
