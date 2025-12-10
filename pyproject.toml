@@ -8,4 +8,5 @@ dependencies = [
     "scrapeops-scrapy>=0.5.6",
     "scrapy>=2.13.3",
     "scrapyd>=1.6.0",
+    "scrapyd-client>=2.0.3",
 ]

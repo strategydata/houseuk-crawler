@@ -1,0 +1,12 @@
+services:
+  scrapy_app: 
+    build:
+      context: ./rightmove
+    container_name: scrapyd
+    ports:
+      - "6800:6800"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "localhost:6800/daemonstatus"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
